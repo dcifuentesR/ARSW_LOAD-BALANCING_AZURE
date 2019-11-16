@@ -86,10 +86,44 @@ Cuando un conjunto de usuarios consulta un enésimo número (superior a 1000000)
 **Preguntas**
 
 1. ¿Cuántos y cuáles recursos crea Azure junto con la VM?
+
+   Cuando se crea una máquina virtual en Azure se crean los siguientes recursos:
+   
+      * La máquina virtual
+      * Una dirección IP pública
+      * Un disco
+      * Una interfaz de red
+      * Un grupo de seguridad
+      * Una cuenta de almacenamiento
+      * Una red virtual
+      
 2. ¿Brevemente describa para qué sirve cada recurso?
+
 3. ¿Al cerrar la conexión ssh con la VM, por qué se cae la aplicación que ejecutamos con el comando `npm FibonacciApp.js`? ¿Por qué debemos crear un *Inbound port rule* antes de acceder al servicio?
+
+Porque cuando se cierra la sesión ssh también se terminan los procesos que se estaban ejecutando en el shell.
+
+se debe abrir el puerto para que el servicio se pueda acceder desde Internet
+
 4. Adjunte tabla de tiempos e interprete por qué la función tarda tando tiempo.
+
+    * 1000000: 33.41 s
+    * 1010000: 33.67 s
+    * 1020000: 34.89 s
+    * 1030000: 35.15 s
+    * 1040000: 35.73 s
+    * 1050000: 36.40 s
+    * 1060000: 36.47 s
+    * 1070000: 37.36 s
+    * 1080000: 38.17 s
+    * 1090000: 38.06 s
+Los tiempos son tan altos en parte porque la función no está usando memoización, entonces recalcula valores que ya debería conocer.
+
 5. Adjunte imágen del consumo de CPU de la VM e interprete por qué la función consume esa cantidad de CPU.
+
+La siguiente imágen muestra el consumo de CPU de la prueba anterior, así como el consumo al ejecutar postman.
+![](https://github.com/dcifuentesR/ARSW_LOAD-BALANCING_AZURE/blob/master/images/part1/Newman%20metrics/pre-scaling/CPU.PNG)
+
 6. Adjunte la imagen del resumen de la ejecución de Postman. Interprete:
     * Tiempos de ejecución de cada petición.
     * Si hubo fallos documentelos y explique.
